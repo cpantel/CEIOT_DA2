@@ -1,0 +1,47 @@
+<ion-header>
+  <ion-toolbar>
+      <ion-buttons slot="start">
+          <ion-button routerLink="/">
+              <ion-icon slot="icon-only" name="arrow-back"></ion-icon>
+          </ion-button>
+      </ion-buttons>
+      <ion-title *ngIf="this.dispositivo != null">Dispositivo - {{this.dispositivo.dispositivoId}}</ion-title>
+      <ion-title *ngIf="this.dispositivo == null">Dispositivo - LOADING</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <div *ngIf="this.dispositivo == null">
+     LOADING dispositivo
+  </div>
+  <div *ngIf="this.dispositivo != null">
+    <div>
+      {{this.dispositivo.nombre}}
+    </div>
+    <div>
+      {{this.dispositivo.ubicacion}}
+    </div>
+    <div>
+      {{this.dispositivo.electrovalvulaId}}
+  </div>
+  <div *ngIf="this.mediciones == null" >
+     LOADING mediciones
+  </div>
+  <div *ngIf="this.mediciones != null" >
+    <div *ngFor="let medicion of this.mediciones">
+      <div>
+        Fecha: {{medicion.fecha}}
+      </div>
+      <div>
+        Valor: {{medicion.valor}}
+      </div>
+
+      <div>
+        Electrovalvula: {{medicion.electrovalvulaId}}
+      </div>
+    </div>
+  </div>
+
+</div>
+</ion-content>
+~                  

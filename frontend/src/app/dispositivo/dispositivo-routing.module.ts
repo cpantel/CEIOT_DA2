@@ -7,6 +7,10 @@ const routes: Routes = [
   {
     path: '',
     component: DispositivoPage
+  },
+  {
+    path: 'sensor',
+    loadChildren: () => import('./sensor/sensor.module').then( m => m.SensorPageModule)
   }
 ];
 

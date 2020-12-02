@@ -24,24 +24,9 @@
     <div>
       {{this.dispositivo.electrovalvulaId}}
   </div>
-  <div *ngIf="this.mediciones == null" >
-     LOADING mediciones
-  </div>
-  <div *ngIf="this.mediciones != null" >
-    <div *ngFor="let medicion of this.mediciones">
-      <div>
-        Fecha: {{medicion.fecha}}
-      </div>
-      <div>
-        Valor: {{medicion.valor}}
-      </div>
-
-      <div>
-        Electrovalvula: {{medicion.electrovalvulaId}}
-      </div>
-    </div>
-  </div>
-
+   <div routerLink="/dispositivo/{{dispositivo.dispositivoId}}/sensor" routerDirection="root">
+    Ver mediciones como tabla
+   </div>
 </div>
 </ion-content>
 ~                  

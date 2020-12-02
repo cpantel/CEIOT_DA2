@@ -1,0 +1,43 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title *ngIf="this.mediciones != null">Sensor {{mediciones[0].dispositivoId}}</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <div *ngIf="this.mediciones == null" >
+    LOADING mediciones
+ </div>
+ <div *ngIf="this.mediciones != null" >
+
+
+  <table border="1" >
+    <tr>
+      <th>
+        Fecha
+      </th>
+      <th>
+       Valor
+      </th>
+      <th>
+       electrovalvulaId 
+     </th>
+
+     </tr>
+        
+        <tr *ngFor="let medicion of this.mediciones">
+          <td>
+            {{medicion.fecha}}
+          </td>
+          <td>
+            {{medicion.valor}}
+          </td>
+          <td>
+            {{medicion.electrovalvulaId}}
+          </td>
+        </tr>
+   
+   
+  </table>
+ </div>
+</ion-content>

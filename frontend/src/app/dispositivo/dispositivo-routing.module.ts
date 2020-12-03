@@ -11,6 +11,10 @@ const routes: Routes = [
   {
     path: 'sensor',
     loadChildren: () => import('./sensor/sensor.module').then( m => m.SensorPageModule)
+  },
+  {
+    path: 'medicion',
+    loadChildren: () => import('./medicion/medicion.module').then( m => m.MedicionPageModule)
   }
 ];
 

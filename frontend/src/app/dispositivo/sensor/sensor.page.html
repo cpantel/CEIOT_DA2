@@ -1,10 +1,17 @@
 <ion-header>
-  <ion-toolbar>
-    <ion-title>Sensor Graficado</ion-title>
+  <ion-toolbar *ngIf="this.dispositivoId != null">
+    <ion-buttons slot="start">
+      <ion-button routerLink="/dispositivo/{{this.dispositivoId}}">
+          <ion-icon slot="icon-only" name="arrow-back"></ion-icon>
+      </ion-button>
+    </ion-buttons>     
+    <ion-title >Sensor {{this.dispositivoId}}</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
-  <div id="highcharts" style="width:100%; height:300px;"></div>
-
+  <ion-card>
+    <div id="highcharts"></div>
+    
+  </ion-card>
 </ion-content>

@@ -17,7 +17,7 @@ export class MedicionService {
   getUltimaMedicion(id):Promise<Medicion> {
     return this._http.get("http://localhost:8080/api/medicion/" + id + "/ultima").toPromise().then(
       (medicion:Medicion) => { 
-        return  medicion[0];
+        return  medicion;
       }
     )
   }

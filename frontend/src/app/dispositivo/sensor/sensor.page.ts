@@ -21,36 +21,53 @@ export class SensorPage implements OnInit {
 
 
 
-  private valorObtenido:number=0;
+  
   public myChart;
   private chartOptions;
-  //public mediciones:Array<Medicion>;
-
+  private dispositivoId;
+  private valor;
+  private sensorId;
   constructor(private router:ActivatedRoute,
               private ms:MedicionService) {
+/*
     setTimeout(()=>{
       console.log("Cambio el valor del sensor");
-      this.valorObtenido=60;
+      
       //llamo al update del chart para refrescar y mostrar el nuevo valor
       this.myChart.update({series: [{
           name: 'kPA',
-          data: [this.valorObtenido],
+          data: [this.valor],
           tooltip: {
               valueSuffix: ' kPA'
           }
       }]});
-    },6000);                
+    },6000);  */              
   }
 
   ngOnInit() {
-    /*let idDispositivo = this.router.snapshot.paramMap.get('id');
-    this.ms.getMediciones(idDispositivo).then(
-      (mediciones) => { this.mediciones = mediciones; }
-    )*/
+    this.valor = 15;
+    this.dispositivoId = this.router.snapshot.paramMap.get('id');
+     
+    this.generarChart();
+    setInterval(()=>{ 
+    this.ms.getUltimaMedicion(this.dispositivoId).then(
+      (medicion) => { 
+        this.valor =parseInt(medicion.valor);
+        this.sensorId = 1;
+        console.log(this.valor)
+        this.myChart.update({series: [{
+          name: 'kPA',
+          data: [this.valor],
+          tooltip: {
+              valueSuffix: ' kPA'
+          }
+        }]})
+
+      }
+    )}, 5000);
   }
 
   ionViewDidEnter() {
-    this.generarChart();
   }
 
   generarChart() {
@@ -63,7 +80,7 @@ export class SensorPage implements OnInit {
           plotShadow: false
         }
         ,title: {
-          text: 'Sensor N° 1'
+          text: 'Sensor N° ' + this.dispositivoId
         }
 
         ,credits:{enabled:false}
@@ -114,7 +131,7 @@ export class SensorPage implements OnInit {
   
     series: [{
         name: 'kPA',
-        data: [this.valorObtenido],
+        data: [this.valor],
         tooltip: {
             valueSuffix: ' kPA'
         }

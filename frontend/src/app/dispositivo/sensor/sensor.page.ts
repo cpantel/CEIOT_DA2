@@ -33,20 +33,19 @@ export class SensorPage implements OnInit {
                 console.log("constructor")       
   }
 
-  ionViewWillLeave() {
-    console.log("ionViewWillLeave")
-    clearInterval(this.interval);
-    this.myChart = undefined;
-  }
+
     
   
   ngOnInit() {
     console.log("ngOnInit")
     this.valor = 0;
     this.dispositivoId = this.router.snapshot.paramMap.get('id');
-     
-    this.generarChart();
-;
+    this.generarChart();    
+  }
+
+  ionViewWillEnter() {
+    console.log("ionViewWillEnter")
+
   }
 
   ionViewDidEnter() {
@@ -69,6 +68,12 @@ export class SensorPage implements OnInit {
         }
       )
       }, 5000)    
+  }
+
+  ionViewWillLeave() {
+    console.log("ionViewWillLeave")
+    clearInterval(this.interval);
+   // this.myChart = undefined;
   }
 
   generarChart() {

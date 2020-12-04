@@ -26,51 +26,59 @@ export class SensorPage implements OnInit {
   private chartOptions;
   private dispositivoId;
   private valor;
-  private sensorId;
+  private interval;
+  
   constructor(private router:ActivatedRoute,
               private ms:MedicionService) {
-/*
-    setTimeout(()=>{
-      console.log("Cambio el valor del sensor");
-      
-      //llamo al update del chart para refrescar y mostrar el nuevo valor
-      this.myChart.update({series: [{
-          name: 'kPA',
-          data: [this.valor],
-          tooltip: {
-              valueSuffix: ' kPA'
-          }
-      }]});
-    },6000);  */              
+                console.log("constructor")       
   }
 
-  ngOnInit() {
-    this.valor = 15;
-    this.dispositivoId = this.router.snapshot.paramMap.get('id');
-     
-    this.generarChart();
-    setInterval(()=>{ 
-    this.ms.getUltimaMedicion(this.dispositivoId).then(
-      (medicion) => { 
-        this.valor =parseInt(medicion.valor);
-        this.sensorId = 1;
-        console.log(this.valor)
-        this.myChart.update({series: [{
-          name: 'kPA',
-          data: [this.valor],
-          tooltip: {
-              valueSuffix: ' kPA'
-          }
-        }]})
 
-      }
-    )}, 5000);
+    
+  
+  ngOnInit() {
+    console.log("ngOnInit")
+    this.valor = 0;
+    this.dispositivoId = this.router.snapshot.paramMap.get('id');
+    this.generarChart();    
+  }
+
+  ionViewWillEnter() {
+    console.log("ionViewWillEnter")
+
   }
 
   ionViewDidEnter() {
+    console.log("ionViewDidEnter")
+    this.interval =  setInterval(()=>{ 
+      this.ms.getUltimaMedicion(this.dispositivoId).then(
+        (medicion) => { 
+          this.valor =parseInt(medicion.valor);
+          console.log(this.valor)
+          if (this.myChart) {
+            this.myChart.update({series: [{
+              name: 'kPA',
+              data: [this.valor],
+              tooltip: {
+                  valueSuffix: ' kPA'
+              }
+            }]})
+          }
+  
+        }
+      )
+      }, 5000)    
+  }
+
+  ionViewWillLeave() {
+    console.log("ionViewWillLeave")
+    clearInterval(this.interval);
+   // this.myChart = undefined;
   }
 
   generarChart() {
+    console.log("generarChart")
+
     this.chartOptions={
       chart: {
           type: 'gauge',
@@ -78,20 +86,16 @@ export class SensorPage implements OnInit {
           plotBackgroundImage: null,
           plotBorderWidth: 0,
           plotShadow: false
-        }
-        ,title: {
+        },
+        title: {
           text: 'Sensor N° ' + this.dispositivoId
-        }
-
-        ,credits:{enabled:false}
-        
-           
-        ,pane: {
+        },
+        credits:{enabled:false},
+        pane: {
             startAngle: -150,
             endAngle: 150
-        } 
-        // the value axis
-      ,yAxis: {
+        },
+        yAxis: {
         min: 0,
         max: 100,
   
@@ -126,9 +130,7 @@ export class SensorPage implements OnInit {
             to: 100,
             color: '#DF5353' // red
         }]
-    }
-    ,
-  
+    },  
     series: [{
         name: 'kPA',
         data: [this.valor],

@@ -9,14 +9,19 @@
   <ion-content>
 
     <ion-list>
-      <ion-item *ngFor="let dispositivo of this.dispositivos" routerLink="/dispositivo/{{dispositivo.dispositivoId}}" routerDirection="root">
+      <ion-item *ngFor="let dispositivo of this.dispositivos" routerLink="/dispositivo/{{dispositivo.dispositivoId}}/sensor" routerDirection="root">
         <ion-avatar>
           <ion-icon size="large" name="thermometer"></ion-icon>
         </ion-avatar>
         <ion-label>
-            <h2>Sensor {{dispositivo.dispositivoId}}</h2>
-            <h3>{{dispositivo.nombre}} - {{dispositivo.ubicacion}} - {{dispositivo.electrovalvulaId}}</h3>
+            <h2>Sensor {{dispositivo.dispositivoId}} - {{dispositivo.nombre}}</h2>
+            <ion-avatar>
+              <ion-icon size="small" name="location"></ion-icon> {{dispositivo.ubicacion}}
+            </ion-avatar>
         </ion-label>
+        <ion-avatar>
+          <ion-icon size="large" name="arrow-forward"></ion-icon>
+        </ion-avatar>
       </ion-item>
     </ion-list>
   </ion-content>

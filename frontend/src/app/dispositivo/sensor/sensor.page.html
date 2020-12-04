@@ -1,7 +1,7 @@
 <ion-header>
   <ion-toolbar *ngIf="this.dispositivoId != null">
     <ion-buttons slot="start">
-      <ion-button routerLink="/dispositivo/{{this.dispositivoId}}">
+      <ion-button routerLink="/">
           <ion-icon slot="icon-only" name="arrow-back"></ion-icon>
       </ion-button>
     </ion-buttons>     
@@ -12,6 +12,8 @@
 <ion-content>
   <ion-card>
     <div id="highcharts"></div>
-    
+    <div><ion-button>Abrir electroválvula</ion-button></div>
+    <div><ion-button>Ver todas las mediciones</ion-button></div>
+    <div><ion-button>Ver todos los riegos</ion-button></div>
   </ion-card>
 </ion-content>

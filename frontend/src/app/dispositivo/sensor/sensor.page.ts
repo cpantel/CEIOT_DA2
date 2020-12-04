@@ -30,32 +30,33 @@ export class SensorPage implements OnInit {
   
   constructor(private router:ActivatedRoute,
               private ms:MedicionService) {
-                console.log("constructor")       
+                console.log("00 constructor")       
   }
 
 
     
   
   ngOnInit() {
-    console.log("ngOnInit")
+    console.log("01 ngOnInit")
     this.valor = 0;
     this.dispositivoId = this.router.snapshot.paramMap.get('id');
     this.generarChart();    
   }
 
   ionViewWillEnter() {
-    console.log("ionViewWillEnter")
+    console.log("02 ionViewWillEnter")
 
   }
 
   ionViewDidEnter() {
-    console.log("ionViewDidEnter")
+    console.log("03 ionViewDidEnter")
     this.interval =  setInterval(()=>{ 
       this.ms.getUltimaMedicion(this.dispositivoId).then(
         (medicion) => { 
           this.valor =parseInt(medicion.valor);
           console.log(this.valor)
           if (this.myChart) {
+            console.log("03.1 update")
             this.myChart.update({series: [{
               name: 'kPA',
               data: [this.valor],
@@ -63,21 +64,24 @@ export class SensorPage implements OnInit {
                   valueSuffix: ' kPA'
               }
             }]})
+          } else {
+            console.log("03.1 skip update")
+
           }
-  
         }
       )
       }, 5000)    
   }
 
   ionViewWillLeave() {
-    console.log("ionViewWillLeave")
+    console.log("04 ionViewWillLeave")
     clearInterval(this.interval);
    // this.myChart = undefined;
   }
 
   generarChart() {
-    console.log("generarChart")
+    console.log("01.1 generarChart")
+    console.log(this.dispositivoId)
 
     this.chartOptions={
       chart: {
@@ -140,6 +144,6 @@ export class SensorPage implements OnInit {
     }]
 
     };
-    this.myChart = Highcharts.chart('highcharts', this.chartOptions );
+    this.myChart = Highcharts.chart("highcharts", this.chartOptions );
   }
 }

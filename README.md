@@ -16,16 +16,18 @@ la base inicializa la primera vez con lo que haya en dbsetup.sql
 
 
 TODO
+----
 
-agregar delay en backend para que se vean los delays
-que la conexión a la db soporte que la base no esté aun disponible
-agregar manejo de errores en frontend
+* Normalizar los nombres de las rutas de la API
+* Normalizar nombres de parámetros (idDisp vs dispId)
+* Agregar delay en backend para que se vean los delays
+* Que la conexión a la db soporte que la base no esté aun disponible
+* Agregar manejo de errores en frontend
 
 
 
 Fallas conocidas
-
-No usar docker secrets para las credenciales
-
-Usar direcciones hardcodeadas en las url en lugar de hacerlas depender de los nombres dados por docker
+-----------------
+* No se está usando docker secrets para las credenciales
+* Se están usando direcciones hardcodeadas en las url en lugar de hacerlas depender de los nombres dados por docker
 

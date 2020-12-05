@@ -60,6 +60,23 @@ CREATE TABLE IF NOT EXISTS `DAM`.`Mediciones` (
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
+-- -----------------------------------------------------
+-- Table `DAM`.`Log_Riegos`
+-- -----------------------------------------------------
+DROP TABLE IF EXISTS `DAM`.`Log_Riegos` ;
+CREATE TABLE IF NOT EXISTS `DAM`.`Log_Riegos` (
+  `logRiegoId` INT NOT NULL AUTO_INCREMENT,
+  `fecha` DATETIME NULL,
+  `apertura` INT NOT NULL,
+  `electrovalvulaId` INT NOT NULL,
+  PRIMARY KEY (`logRiegoId`, `electrovalvulaId`),
+  INDEX `fk_Log_Riegos_Electrovalvulas_idx` (`electrovalvulaId` ASC) ,
+  CONSTRAINT `fk_Log_Riegos_Electrovalvulas`
+    FOREIGN KEY (`electrovalvulaId`)
+    REFERENCES `DAM`.`Electrovalvulas` (`electrovalvulaId`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB;
 
 SET SQL_MODE=@OLD_SQL_MODE;
 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS;
@@ -81,3 +98,13 @@ insert into Mediciones (fecha, valor, dispositivoId) values (now(), "99", 3);
 insert into Mediciones (fecha, valor, dispositivoId) values (now(), "34", 1);
 insert into Mediciones (fecha, valor, dispositivoId) values (now(), "67", 2);
 insert into Mediciones (fecha, valor, dispositivoId) values (now(), "100", 3);
+
+insert into Log_Riegos(apertura,fecha,electrovalvulaId) values(1,now(),1);
+insert into Log_Riegos(apertura,fecha,electrovalvulaId) values(0,now(),1);
+insert into Log_Riegos(apertura,fecha,electrovalvulaId) values(1,now(),1);
+insert into Log_Riegos(apertura,fecha,electrovalvulaId) values(0,now(),2);
+insert into Log_Riegos(apertura,fecha,electrovalvulaId) values(1,now(),2);
+insert into Log_Riegos(apertura,fecha,electrovalvulaId) values(0,now(),2);
+
+
+

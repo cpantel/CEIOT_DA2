@@ -10,4 +10,4 @@ services:
     ports:
       - "3306:3306"
     volumes:
-      - ./dbsetup.sql:/docker-entrypoint-initdb.d/dbsetup.sql
+      - ./backend/dbsetup.sql:/docker-entrypoint-initdb.d/dbsetup.sql

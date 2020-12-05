@@ -1,7 +1,11 @@
 <ion-header>
   <ion-toolbar *ngIf="this.mediciones != null">
     <ion-buttons slot="start">
-      <ion-button routerLink="/dispositivo/{{mediciones[0].dispositivoId}}">
+      <ion-button routerLink="/home">
+        <ion-icon slot="icon-only" name="home"></ion-icon>
+    </ion-button>
+
+      <ion-button routerLink="/dispositivo/{{mediciones[0].dispositivoId}}/sensor">
           <ion-icon slot="icon-only" name="arrow-back"></ion-icon>
       </ion-button>
     </ion-buttons>     

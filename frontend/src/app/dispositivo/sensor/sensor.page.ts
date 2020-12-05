@@ -33,50 +33,59 @@ export class SensorPage implements OnInit {
                 console.log("00 constructor")       
   }
 
-
     
   
   ngOnInit() {
     console.log("01 ngOnInit")
     this.valor = 0;
     this.dispositivoId = this.router.snapshot.paramMap.get('id');
-    this.generarChart();    
+    
   }
 
   ionViewWillEnter() {
     console.log("02 ionViewWillEnter")
+    this.generarChart();
+    this.updateChart();
 
   }
 
+
+  
   ionViewDidEnter() {
     console.log("03 ionViewDidEnter")
     this.interval =  setInterval(()=>{ 
-      this.ms.getUltimaMedicion(this.dispositivoId).then(
-        (medicion) => { 
-          this.valor =parseInt(medicion.valor);
-          console.log(this.valor)
-          if (this.myChart) {
-            console.log("03.1 update")
-            this.myChart.update({series: [{
-              name: 'kPA',
-              data: [this.valor],
-              tooltip: {
-                  valueSuffix: ' kPA'
-              }
-            }]})
-          } else {
-            console.log("03.1 skip update")
-
-          }
-        }
-      )
+        this.updateChart();
       }, 5000)    
   }
 
   ionViewWillLeave() {
     console.log("04 ionViewWillLeave")
     clearInterval(this.interval);
-   // this.myChart = undefined;
+    //document.getElementById("highcharts_" + this.dispositivoId).remove();
+    //this.myChart = undefined;
+  }
+
+
+  updateChart() {
+    this.ms.getUltimaMedicion(this.dispositivoId).then(
+      (medicion) => { 
+        this.valor =parseInt(medicion.valor);
+        console.log(this.valor)
+        if (this.myChart) {
+          console.log("03.1 update")
+          this.myChart.update({series: [{
+            name: 'kPA',
+            data: [this.valor],
+            tooltip: {
+                valueSuffix: ' kPA'
+            }
+          }]})
+        } else {
+          console.log("03.1 skip update")
+
+        }
+      }
+    )
   }
 
   generarChart() {
@@ -144,6 +153,6 @@ export class SensorPage implements OnInit {
     }]
 
     };
-    this.myChart = Highcharts.chart("highcharts", this.chartOptions );
+    this.myChart = Highcharts.chart("highcharts_" + this.dispositivoId, this.chartOptions );
   }
 }

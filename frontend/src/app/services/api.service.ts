@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Dispositivo } from '../model/Dispositivo';
-import { Medicion } from '../model/Medicion';
+import { Medicion }    from '../model/Medicion';
+import { Riego }       from '../model/Riego';
 
 import { HttpClient } from '@angular/common/http';
 
@@ -13,6 +14,14 @@ export class ApiService {
   constructor(private _http:HttpClient) {
 
   }
+
+  getRiegos(id):Promise<Array<Riego>> {
+    return this._http.get("http://localhost:8080/api/riego/" + id ).toPromise().then(
+      (riegos:Array<Riego>) => { 
+        return  riegos;
+      }
+    )
+  }  
 
   getDispositivos():Promise<Array<Dispositivo>> {
    return this._http.get("http://localhost:8080/api/dispositivo/").toPromise().then(

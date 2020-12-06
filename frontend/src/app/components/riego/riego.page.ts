@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { Riego } from '../model/Riego';
+import { Riego } from '../../model/Riego';
 import { ActivatedRoute } from '@angular/router';
 
-import { ApiService } from '../services/api.service'
+import { ApiService } from '../../services/api.service'
 @Component({
   selector: 'app-riego',
   templateUrl: './riego.page.html',

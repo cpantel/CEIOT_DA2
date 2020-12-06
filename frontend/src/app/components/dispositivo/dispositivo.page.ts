@@ -1,8 +1,8 @@
 import { Component } from '@angular/core';
 
-import {Dispositivo} from '../model/Dispositivo';
+import {Dispositivo} from '../../model/Dispositivo';
 
-import  { ApiService} from '../services/api.service';
+import  { ApiService} from '../../services/api.service';
 
 @Component({
   selector: 'app-dispositivo',

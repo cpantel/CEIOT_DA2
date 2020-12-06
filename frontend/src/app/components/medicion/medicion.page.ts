@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { Medicion } from '../model/Medicion';
+import { Medicion } from '../../model/Medicion';
 import { ActivatedRoute } from '@angular/router';
 
-import { ApiService } from '../services/api.service';
+import { ApiService } from '../../services/api.service';
 
 
 @Component({

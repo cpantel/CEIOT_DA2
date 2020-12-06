@@ -8,17 +8,17 @@ const routes: Routes = [
     component: DispositivoPage,
   },
   {
-        path: 'sensor',
-        loadChildren: () => import('../sensor/sensor.module').then( m => m.SensorPageModule)
-      },
-      {
-        path: 'medicion',
-        loadChildren: () => import('../medicion/medicion.module').then( m => m.MedicionPageModule)
-      },
-      {
-        path: 'riego',
-        loadChildren: () => import('../riego/riego.module').then( m => m.RiegoPageModule)
-      } 
+    path: 'sensor',
+    loadChildren: () => import('../sensor/sensor.module').then( m => m.SensorPageModule)
+  },
+  {
+    path: 'medicion',
+    loadChildren: () => import('../medicion/medicion.module').then( m => m.MedicionPageModule)
+  },
+  {
+    path: 'riego',
+    loadChildren: () => import('../riego/riego.module').then( m => m.RiegoPageModule)
+  } 
     
 ];
 

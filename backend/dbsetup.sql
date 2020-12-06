@@ -97,23 +97,23 @@ insert into Mediciones (fecha, valor, dispositivoId) values (now(), "22", 2);
 insert into Mediciones (fecha, valor, dispositivoId) values (now(), "33", 3);
 insert into Mediciones (fecha, valor, dispositivoId) values (now(), "44", 4);
 
-insert into Mediciones (fecha, valor, dispositivoId) values (now(), "12", 1);
-insert into Mediciones (fecha, valor, dispositivoId) values (now(), "23", 2);
-insert into Mediciones (fecha, valor, dispositivoId) values (now(), "34", 3);
-insert into Mediciones (fecha, valor, dispositivoId) values (now(), "45", 4);
+insert into Mediciones (fecha, valor, dispositivoId) values (now() + INTERVAL 10 SECOND, "12", 1);
+insert into Mediciones (fecha, valor, dispositivoId) values (now() + INTERVAL 10 SECOND, "23", 2);
+insert into Mediciones (fecha, valor, dispositivoId) values (now() + INTERVAL 10 SECOND, "34", 3);
+insert into Mediciones (fecha, valor, dispositivoId) values (now() + INTERVAL 10 SECOND, "45", 4);
 
 insert into Log_Riegos(apertura,fecha,electrovalvulaId) values(1,now(),1);
-insert into Log_Riegos(apertura,fecha,electrovalvulaId) values(0,now(),1);
-insert into Log_Riegos(apertura,fecha,electrovalvulaId) values(1,now(),1);
+insert into Log_Riegos(apertura,fecha,electrovalvulaId) values(0,now() + INTERVAL 10 SECOND,1);
+insert into Log_Riegos(apertura,fecha,electrovalvulaId) values(1,now() + INTERVAL 20 SECOND,1);
 insert into Log_Riegos(apertura,fecha,electrovalvulaId) values(0,now(),2);
-insert into Log_Riegos(apertura,fecha,electrovalvulaId) values(1,now(),2);
-insert into Log_Riegos(apertura,fecha,electrovalvulaId) values(0,now(),2);
+insert into Log_Riegos(apertura,fecha,electrovalvulaId) values(1,now() + INTERVAL 10 SECOND,2);
+insert into Log_Riegos(apertura,fecha,electrovalvulaId) values(0,now() + INTERVAL 20 SECOND,2);
 insert into Log_Riegos(apertura,fecha,electrovalvulaId) values(1,now(),3);
-insert into Log_Riegos(apertura,fecha,electrovalvulaId) values(0,now(),3);
-insert into Log_Riegos(apertura,fecha,electrovalvulaId) values(1,now(),3);
+insert into Log_Riegos(apertura,fecha,electrovalvulaId) values(0,now() + INTERVAL 10 SECOND,3);
+insert into Log_Riegos(apertura,fecha,electrovalvulaId) values(1,now() + INTERVAL 20 SECOND,3);
 insert into Log_Riegos(apertura,fecha,electrovalvulaId) values(0,now(),4);
-insert into Log_Riegos(apertura,fecha,electrovalvulaId) values(1,now(),4);
-insert into Log_Riegos(apertura,fecha,electrovalvulaId) values(0,now(),4);
+insert into Log_Riegos(apertura,fecha,electrovalvulaId) values(1,now() + INTERVAL 10 SECOND,4);
+insert into Log_Riegos(apertura,fecha,electrovalvulaId) values(0,now() + INTERVAL 20 SECOND,4);
 
 
 

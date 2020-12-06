@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { Dispositivo } from '../model/Dispositivo';
 import { Medicion }    from '../model/Medicion';
 import { Riego }       from '../model/Riego';
+import { Electrovalvula }  from '../model/Electrovalvula';
 
 import { HttpClient } from '@angular/common/http';
 
@@ -49,13 +50,20 @@ export class ApiService {
    )  
   }
 
-  getRiegos(id):Promise<Array<Medicion>> {
+  getRiegos(id):Promise<Array<Riego>> {
     return this._http.get("http://localhost:8080/api/dispositivo/" + id + "/riego").toPromise().then(
-      (mediciones:Array<Medicion>) => { 
-        return  mediciones;
+      (riegos:Array<Riego>) => { 
+        return  riegos;
       }
     )  
    }
 
+   getElectrovalvula(id):Promise<Electrovalvula> {
+    return this._http.get("http://localhost:8080/api/dispositivo/" + id + "/electrovalvula").toPromise().then(
+      (electrovalvula:Electrovalvula) => { 
+        return  electrovalvula;
+      }
+    )  
+   }
 
 }

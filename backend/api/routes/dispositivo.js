@@ -35,9 +35,36 @@ order by
   Log_Riegos.fecha desc
 `;
 
+var estadoElectrovalvulaQuery =  `
+select
+  Dispositivos.dispositivoId,
+  Electrovalvulas.electrovalvulaId,
+  Electrovalvulas.nombre as electrovalvulaNombre,
+  Log_Riegos.apertura
+from Dispositivos
+inner join Electrovalvulas
+  on Dispositivos.electrovalvulaId = Electrovalvulas.electrovalvulaId
+left join Log_Riegos
+  on Electrovalvulas.electrovalvulaId = Log_Riegos.electrovalvulaId
+where
+  dispositivoId = ?
+order by
+  Log_Riegos.fecha desc
+limit 1
+`;
+
+routerDispositivo.get('/:idDispositivo/electrovalvula', function(req, res) {
+    pool.query(estadoElectrovalvulaQuery, [req.params.idDispositivo], function(err, result, fields) {
+        if (err) {
+            res.send(err).status(400);
+            return;
+        }
+        res.send(result);
+    });
+})
+
 //Devuelve un array de dispositivos
 routerDispositivo.get('/', function(req, res) {
-    console.log("dispositivos")
     pool.query('Select * from Dispositivos', function(err, result, fields) {
         if (err) {
             res.send(err).status(400);
@@ -48,7 +75,6 @@ routerDispositivo.get('/', function(req, res) {
 });
 
 routerDispositivo.get('/:idDispositivo/medicion', function(req, res) {
-    console.log("todas")
     pool.query(medicionesQuery, [req.params.idDispositivo], function(err, result, fields) {
         if (err) {
             res.send(err).status(400);
@@ -59,7 +85,6 @@ routerDispositivo.get('/:idDispositivo/medicion', function(req, res) {
 });
 //Espera recibir por parámetro un id de dispositivo y devuelve su última medición
 routerDispositivo.get('/:idDispositivo/medicion/ultima', function(req, res) {
-    console.log("ultima")
     pool.query(ultimaMedicionQuery, [req.params.idDispositivo], function(err, result, fields) {
         if (err) {
             res.send(err).status(400);
@@ -70,7 +95,6 @@ routerDispositivo.get('/:idDispositivo/medicion/ultima', function(req, res) {
 });
 
 routerDispositivo.get('/:idDispositivo/riego', function(req, res) {
-    console.log()
     pool.query(riegoQuery, [req.params.idDispositivo], function(err, result, fields) {
         if (err) {
             res.send(err).status(400);

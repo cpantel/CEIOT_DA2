@@ -21,6 +21,8 @@ export class SensorPage implements OnInit {
   
   private valor;
   private interval;
+  private apertura;
+  private electrovalvulaNombre;
   
   constructor(private router:ActivatedRoute,
               private api:ApiService) {
@@ -39,11 +41,20 @@ export class SensorPage implements OnInit {
   ionViewDidEnter() {
     this.interval =  setInterval(()=>{ 
         this.updateChart();
+        this.updateApertura();
       }, 5000)    
   }
 
   ionViewWillLeave() {
     clearInterval(this.interval);
+  }
+  updateApertura() {
+    this.api.getElectrovalvula(this.dispositivoId).then(
+      (electrovalvula) => {
+        this.apertura = electrovalvula[0].apertura;
+        this.electrovalvulaNombre= electrovalvula[0].electrovalvulaNombre;
+      }
+    )
   }
 
   updateChart() {

@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 
 import {Dispositivo} from '../model/Dispositivo';
 
-import  { DispositivoService} from '../services/dispositivo.service';
+import  { ApiService} from '../services/api.service';
 
 @Component({
   selector: 'app-home',
@@ -12,8 +12,8 @@ import  { DispositivoService} from '../services/dispositivo.service';
 export class HomePage {
   dispositivos:Dispositivo[];
 
-  constructor(public ds:DispositivoService) {
-    ds.getDispositivos().then(lst=>{
+  constructor(public api:ApiService) {
+    api.getDispositivos().then(lst=>{
       this.dispositivos=lst;
     })
 

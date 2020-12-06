@@ -6,10 +6,10 @@ declare var require: any;
 require('highcharts/highcharts-more')(Highcharts);
 require('highcharts/modules/solid-gauge')(Highcharts);
 
-import { Medicion } from '../model/Medicion';
+//import { Medicion } from '../model/Medicion';
 import { ActivatedRoute } from '@angular/router';
 
-import { MedicionService } from '../services/medicion.service';
+import { ApiService } from '../services/api.service';
 
 
 @Component({
@@ -25,11 +25,12 @@ export class SensorPage implements OnInit {
   public myChart;
   private chartOptions;
   private dispositivoId;
+  
   private valor;
   private interval;
   
   constructor(private router:ActivatedRoute,
-              private ms:MedicionService) {
+              private api:ApiService) {
                 console.log("00 constructor")       
   }
 
@@ -67,7 +68,7 @@ export class SensorPage implements OnInit {
 
 
   updateChart() {
-    this.ms.getUltimaMedicion(this.dispositivoId).then(
+    this.api.getUltimaMedicion(this.dispositivoId).then(
       (medicion) => { 
         this.valor =parseInt(medicion.valor);
         console.log(this.valor)

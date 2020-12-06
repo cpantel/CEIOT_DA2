@@ -1,15 +1,15 @@
 import { Injectable } from '@angular/core';
 import { Dispositivo } from '../model/Dispositivo';
+import { Medicion } from '../model/Medicion';
+
 import { HttpClient } from '@angular/common/http';
 
 @Injectable({
   providedIn: 'root'
 })
 
-export class DispositivoService {
+export class ApiService {
 
-  listado:Array<Dispositivo> = new Array<Dispositivo>();
-  
   constructor(private _http:HttpClient) {
 
   }
@@ -30,5 +30,21 @@ export class DispositivoService {
       }
     )
   }
-  
+
+
+  getUltimaMedicion(id):Promise<Medicion> {
+    return this._http.get("http://localhost:8080/api/medicion/" + id + "/ultima").toPromise().then(
+      (medicion:Medicion) => { 
+        return  medicion;
+      }
+    )
+  }
+
+  getMediciones(id):Promise<Array<Medicion>> {
+   return this._http.get("http://localhost:8080/api/medicion/" + id + "/todas").toPromise().then(
+     (mediciones:Array<Medicion>) => { 
+       return  mediciones;
+     }
+   )  
+  }
 }

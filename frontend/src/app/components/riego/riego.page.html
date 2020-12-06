@@ -9,7 +9,7 @@
           <ion-icon slot="icon-only" name="arrow-back"></ion-icon>
       </ion-button>
     </ion-buttons>     
-    <ion-title >Mediciones Sensor {{riegos[0].dispositivoId}}</ion-title>
+    <ion-title >Riegos Sensor {{riegos[0].dispositivoId}}</ion-title>
   </ion-toolbar>
 </ion-header>
 
@@ -39,7 +39,7 @@
             {{riego.fecha}}
           </td>
           <td>
-            {{riego.apertura}}
+            {{riego.apertura | electrovalvula }}
           </td>
           <td>
             {{riego.electrovalvulaId}}

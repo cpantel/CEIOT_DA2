@@ -7,13 +7,15 @@ import { IonicModule } from '@ionic/angular';
 import { RiegoPageRoutingModule } from './riego-routing.module';
 
 import { RiegoPage } from './riego.page';
+import { PipesModule } from './../../pipes/pipes.module';
 
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     IonicModule,
-    RiegoPageRoutingModule
+    RiegoPageRoutingModule,
+    PipesModule
   ],
   declarations: [RiegoPage]
 })

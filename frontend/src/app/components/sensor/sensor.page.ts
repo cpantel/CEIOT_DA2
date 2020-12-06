@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 
-
 import * as Highcharts from 'highcharts';
 declare var require: any;
 require('highcharts/highcharts-more')(Highcharts);
@@ -10,17 +9,12 @@ import { ActivatedRoute } from '@angular/router';
 
 import { ApiService } from '../../services/api.service';
 
-
 @Component({
   selector: 'app-sensor',
   templateUrl: './sensor.page.html',
   styleUrls: ['./sensor.page.scss'],
 })
 export class SensorPage implements OnInit {
-
-
-
-  
   public myChart;
   private chartOptions;
   private dispositivoId;
@@ -30,49 +24,33 @@ export class SensorPage implements OnInit {
   
   constructor(private router:ActivatedRoute,
               private api:ApiService) {
-                console.log("00 constructor")       
   }
-
-    
   
   ngOnInit() {
-    console.log("01 ngOnInit")
     this.valor = 0;
     this.dispositivoId = this.router.snapshot.paramMap.get('id');
-    
   }
 
   ionViewWillEnter() {
-    console.log("02 ionViewWillEnter")
     this.generarChart();
     this.updateChart();
-
   }
 
-
-  
   ionViewDidEnter() {
-    console.log("03 ionViewDidEnter")
     this.interval =  setInterval(()=>{ 
         this.updateChart();
       }, 5000)    
   }
 
   ionViewWillLeave() {
-    console.log("04 ionViewWillLeave")
     clearInterval(this.interval);
-    //document.getElementById("highcharts_" + this.dispositivoId).remove();
-    //this.myChart = undefined;
   }
-
 
   updateChart() {
     this.api.getUltimaMedicion(this.dispositivoId).then(
       (medicion) => { 
         this.valor =parseInt(medicion.valor);
-        console.log(this.valor)
         if (this.myChart) {
-          console.log("03.1 update")
           this.myChart.update({series: [{
             name: 'kPA',
             data: [this.valor],
@@ -80,18 +58,12 @@ export class SensorPage implements OnInit {
                 valueSuffix: ' kPA'
             }
           }]})
-        } else {
-          console.log("03.1 skip update")
-
         }
       }
     )
   }
 
   generarChart() {
-    console.log("01.1 generarChart")
-    console.log(this.dispositivoId)
-
     this.chartOptions={
       chart: {
           type: 'gauge',

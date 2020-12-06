@@ -1,9 +1,52 @@
 <ion-header>
-  <ion-toolbar>
-    <ion-title>riego</ion-title>
+  <ion-toolbar *ngIf="this.riegos != null">
+    <ion-buttons slot="start">
+      <ion-button routerLink="/home">
+        <ion-icon slot="icon-only" name="home"></ion-icon>
+    </ion-button>
+
+      <ion-button routerLink="/dispositivo/{{riegos[0].dispositivoId}}/sensor">
+          <ion-icon slot="icon-only" name="arrow-back"></ion-icon>
+      </ion-button>
+    </ion-buttons>     
+    <ion-title >Mediciones Sensor {{riegos[0].dispositivoId}}</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
+  <div *ngIf="this.riegos == null" >
+    LOADING riegos
+ </div>
+ <div *ngIf="this.riegos != null" >
 
+
+  <table border="1" >
+    <tr>
+      <th>
+        Fecha
+      </th>
+      <th>
+       Apertura
+      </th>
+      <th>
+       electrovalvulaId 
+     </th>
+
+     </tr>
+        
+        <tr *ngFor="let riego of this.riegos">
+          <td>
+            {{riego.fecha}}
+          </td>
+          <td>
+            {{riego.apertura}}
+          </td>
+          <td>
+            {{riego.electrovalvulaId}}
+          </td>
+        </tr>
+   
+   
+  </table>
+ </div>
 </ion-content>

@@ -15,14 +15,6 @@ export class ApiService {
 
   }
 
-  getRiegos(id):Promise<Array<Riego>> {
-    return this._http.get("http://localhost:8080/api/riego/" + id ).toPromise().then(
-      (riegos:Array<Riego>) => { 
-        return  riegos;
-      }
-    )
-  }  
-
   getDispositivos():Promise<Array<Dispositivo>> {
    return this._http.get("http://localhost:8080/api/dispositivo/").toPromise().then(
      (dispositivos:Array<Dispositivo>) => { 
@@ -42,18 +34,28 @@ export class ApiService {
 
 
   getUltimaMedicion(id):Promise<Medicion> {
-    return this._http.get("http://localhost:8080/api/medicion/" + id + "/ultima").toPromise().then(
+    return this._http.get("http://localhost:8080/api/dispositivo/" + id + "/medicion/ultima").toPromise().then(
       (medicion:Medicion) => { 
-        return  medicion;
+        return  medicion[0];
       }
     )
   }
 
   getMediciones(id):Promise<Array<Medicion>> {
-   return this._http.get("http://localhost:8080/api/medicion/" + id + "/todas").toPromise().then(
+   return this._http.get("http://localhost:8080/api/dispositivo/" + id + "/medicion" ).toPromise().then(
      (mediciones:Array<Medicion>) => { 
        return  mediciones;
      }
    )  
   }
+
+  getRiegos(id):Promise<Array<Medicion>> {
+    return this._http.get("http://localhost:8080/api/dispositivo/" + id + "/riego").toPromise().then(
+      (mediciones:Array<Medicion>) => { 
+        return  mediciones;
+      }
+    )  
+   }
+
+
 }

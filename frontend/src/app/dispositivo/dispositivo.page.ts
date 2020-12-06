@@ -1,31 +1,23 @@
-import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
-import { Dispositivo } from '../model/Dispositivo';
-import { Medicion } from '../model/Medicion';
-import { ApiService } from '../services/api.service';
+import { Component } from '@angular/core';
 
+import {Dispositivo} from '../model/Dispositivo';
+
+import  { ApiService} from '../services/api.service';
 
 @Component({
   selector: 'app-dispositivo',
-  templateUrl: './dispositivo.page.html',
-  styleUrls: ['./dispositivo.page.scss'],
+  templateUrl: 'dispositivo.page.html',
+  styleUrls: ['dispositivo.page.scss'],
 })
-export class DispositivoPage implements OnInit {
+export class DispositivoPage {
+  dispositivos:Dispositivo[];
 
-  public dispositivo:Dispositivo;
-  public mediciones:Array<Medicion>;
-  constructor(private router:ActivatedRoute,
-              private api:ApiService) { }
+  constructor(public api:ApiService) {
+    api.getDispositivos().then(lst=>{
+      this.dispositivos=lst;
+    })
 
-  ngOnInit() {
-    let idDispositivo = this.router.snapshot.paramMap.get('id');
-    this.api.getDispositivo(idDispositivo).then(
-      dispositivo => { this.dispositivo = dispositivo
-        this.api.getMediciones(idDispositivo).then(
-          (mediciones) => { this.mediciones = mediciones; }
-        )
-      }  
-    )
+    
   }
 
 }

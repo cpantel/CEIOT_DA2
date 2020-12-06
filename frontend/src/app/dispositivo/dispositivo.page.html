@@ -1,39 +1,27 @@
-<ion-header>
-  <ion-toolbar>
-      <ion-buttons slot="start">
-          <ion-button routerLink="/">
-              <ion-icon slot="icon-only" name="arrow-back"></ion-icon>
-          </ion-button>
-      </ion-buttons>
-      <ion-title *ngIf="this.dispositivo != null">Dispositivo - {{this.dispositivo.dispositivoId}}</ion-title>
-      <ion-title *ngIf="this.dispositivo == null">Dispositivo - LOADING</ion-title>
-  </ion-toolbar>
-</ion-header>
+  <ion-header>
+    <ion-toolbar>
+      <ion-title>Listado de dispositivos</ion-title>
+    </ion-toolbar>
+  </ion-header>
+  
 
-<ion-content>
-  <div *ngIf="this.dispositivo == null">
-     LOADING dispositivo
-  </div>
-  <div *ngIf="this.dispositivo != null">
-    <div>
-      {{this.dispositivo.nombre}}
-    </div>
-    <div>
-      {{this.dispositivo.ubicacion}}
-    </div>
-    <div>
-      {{this.dispositivo.electrovalvulaId}}
-  </div>
-   <div routerLink="/dispositivo/{{dispositivo.dispositivoId}}/sensor" routerDirection="root">
-    <br> Ver mediciones como gráfico
-   </div>
-   <div routerLink="/dispositivo/{{dispositivo.dispositivoId}}/medicion" routerDirection="root">
-    <br>Ver mediciones como tabla
-   </div>
-   <div routerLink="/dispositivo/{{dispositivo.dispositivoId}}/riego" routerDirection="root">
-    <br>Ver riego como tabla
-   </div>
 
-</div>
-</ion-content>
-~                  
+  <ion-content>
+
+    <ion-list>
+      <ion-item *ngFor="let dispositivo of this.dispositivos" routerLink="/dispositivo/{{dispositivo.dispositivoId}}/sensor" routerDirection="root">
+        <ion-avatar>
+          <ion-icon size="large" name="thermometer"></ion-icon>
+        </ion-avatar>
+        <ion-label>
+          <h2>Sensor {{dispositivo.dispositivoId}} - {{dispositivo.nombre}}</h2>
+          <ion-avatar>
+            <ion-icon size="small" name="location"></ion-icon> {{dispositivo.ubicacion}}
+          </ion-avatar>
+        </ion-label>
+        <ion-avatar>
+          <ion-icon size="large" name="arrow-forward"></ion-icon>
+        </ion-avatar>
+      </ion-item>
+    </ion-list>
+  </ion-content>

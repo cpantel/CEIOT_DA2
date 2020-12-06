@@ -89,15 +89,18 @@ insert into Electrovalvulas (nombre) values ("valvula 3");
 insert into Electrovalvulas (nombre) values ("valvula 4");
 insert into Dispositivos (nombre, ubicacion, electrovalvulaId) values ("Disp 1", "cocina", 1);
 insert into Dispositivos (nombre, ubicacion, electrovalvulaId) values ("Disp 2", "banio", 2);
-insert into Dispositivos (nombre, ubicacion, electrovalvulaId) values ("Disp 3", "jardin", 3);
+insert into Dispositivos (nombre, ubicacion, electrovalvulaId) values ("Disp 3", "jardin", 4);
+insert into Dispositivos (nombre, ubicacion, electrovalvulaId) values ("Disp 4", "dormitorio", 3);
 
-insert into Mediciones (fecha, valor, dispositivoId) values (now(), "33", 1);
-insert into Mediciones (fecha, valor, dispositivoId) values (now(), "66", 2);
-insert into Mediciones (fecha, valor, dispositivoId) values (now(), "99", 3);
+insert into Mediciones (fecha, valor, dispositivoId) values (now(), "11", 1);
+insert into Mediciones (fecha, valor, dispositivoId) values (now(), "22", 2);
+insert into Mediciones (fecha, valor, dispositivoId) values (now(), "33", 3);
+insert into Mediciones (fecha, valor, dispositivoId) values (now(), "44", 4);
 
-insert into Mediciones (fecha, valor, dispositivoId) values (now(), "34", 1);
-insert into Mediciones (fecha, valor, dispositivoId) values (now(), "67", 2);
-insert into Mediciones (fecha, valor, dispositivoId) values (now(), "100", 3);
+insert into Mediciones (fecha, valor, dispositivoId) values (now(), "12", 1);
+insert into Mediciones (fecha, valor, dispositivoId) values (now(), "23", 2);
+insert into Mediciones (fecha, valor, dispositivoId) values (now(), "34", 3);
+insert into Mediciones (fecha, valor, dispositivoId) values (now(), "45", 4);
 
 insert into Log_Riegos(apertura,fecha,electrovalvulaId) values(1,now(),1);
 insert into Log_Riegos(apertura,fecha,electrovalvulaId) values(0,now(),1);
@@ -105,6 +108,13 @@ insert into Log_Riegos(apertura,fecha,electrovalvulaId) values(1,now(),1);
 insert into Log_Riegos(apertura,fecha,electrovalvulaId) values(0,now(),2);
 insert into Log_Riegos(apertura,fecha,electrovalvulaId) values(1,now(),2);
 insert into Log_Riegos(apertura,fecha,electrovalvulaId) values(0,now(),2);
+insert into Log_Riegos(apertura,fecha,electrovalvulaId) values(1,now(),3);
+insert into Log_Riegos(apertura,fecha,electrovalvulaId) values(0,now(),3);
+insert into Log_Riegos(apertura,fecha,electrovalvulaId) values(1,now(),3);
+insert into Log_Riegos(apertura,fecha,electrovalvulaId) values(0,now(),4);
+insert into Log_Riegos(apertura,fecha,electrovalvulaId) values(1,now(),4);
+insert into Log_Riegos(apertura,fecha,electrovalvulaId) values(0,now(),4);
+
 
 
 

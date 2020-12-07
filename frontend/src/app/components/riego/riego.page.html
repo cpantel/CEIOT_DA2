@@ -19,14 +19,13 @@
  </div>
  <div *ngIf="this.riegos != null" >
 
-
   <table border="1" >
     <tr>
       <th>
         Fecha
       </th>
       <th>
-       Apertura
+       Estado
       </th>
       <th>
        electrovalvulaId 
@@ -34,7 +33,7 @@
 
      </tr>
         
-        <tr *ngFor="let riego of this.riegos">
+        <tr appHighlight *ngFor="let riego of this.riegos">
           <td>
             {{riego.fecha}}
           </td>

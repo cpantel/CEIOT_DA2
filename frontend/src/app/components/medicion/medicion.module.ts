@@ -6,6 +6,8 @@ import { IonicModule } from '@ionic/angular';
 
 import { MedicionPageRoutingModule } from './medicion-routing.module';
 
+import { HighlightDirective } from './../../directives/highlight.directive';
+
 import { MedicionPage } from './medicion.page';
 
 @NgModule({
@@ -15,6 +17,6 @@ import { MedicionPage } from './medicion.page';
     IonicModule,
     MedicionPageRoutingModule
   ],
-  declarations: [MedicionPage]
+  declarations: [MedicionPage,HighlightDirective]
 })
 export class MedicionPageModule {}

@@ -66,4 +66,13 @@ export class ApiService {
     )  
    }
 
+   changeElectrovalvula(id:number,e:boolean):Promise<boolean> {
+    console.log("changeElectrovalvula");
+    return this._http.post("http://localhost:8080/api/dispositivo/" + id + "/electrovalvula",{apertura:e}).toPromise().then(
+      (electrovalvula:Electrovalvula) => { 
+        console.log(electrovalvula);
+        return  electrovalvula.apertura;
+      }
+    )       
+   }
 }

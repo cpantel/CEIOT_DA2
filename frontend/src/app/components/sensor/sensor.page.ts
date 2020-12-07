@@ -48,6 +48,11 @@ export class SensorPage implements OnInit {
   ionViewWillLeave() {
     clearInterval(this.interval);
   }
+
+  changeElectrovalvula(e:boolean) {
+    this.apertura = this.api.changeElectrovalvula(this.dispositivoId,e);
+  }
+
   updateApertura() {
     this.api.getElectrovalvula(this.dispositivoId).then(
       (electrovalvula) => {

@@ -15,7 +15,7 @@
 
 <ion-content>
   <div *ngIf="this.riegos == null" >
-    LOADING riegos
+    Cargando riegos...
  </div>
  <div *ngIf="this.riegos != null" >
 
@@ -33,7 +33,7 @@
 
      </tr>
         
-        <tr appHighlight *ngFor="let riego of this.riegos">
+        <tr *ngFor="let riego of this.riegos">
           <td>
             {{riego.fecha}}
           </td>

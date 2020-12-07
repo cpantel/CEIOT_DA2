@@ -8,8 +8,6 @@ import { RiegoPageRoutingModule } from './riego-routing.module';
 
 import { RiegoPage } from './riego.page';
 import { PipesModule } from './../../pipes/pipes.module';
-import { HighlightDirective } from './../../directives/highlight.directive';
-
 
 @NgModule({
   imports: [
@@ -19,6 +17,6 @@ import { HighlightDirective } from './../../directives/highlight.directive';
     RiegoPageRoutingModule,
     PipesModule
   ],
-  declarations: [RiegoPage,HighlightDirective]
+  declarations: [RiegoPage]
 })
 export class RiegoPageModule {}

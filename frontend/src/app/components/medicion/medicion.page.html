@@ -15,7 +15,7 @@
 
 <ion-content>
   <div *ngIf="this.mediciones == null" >
-    LOADING mediciones
+    Cargando mediciones...
  </div>
  <div *ngIf="this.mediciones != null" >
 
@@ -26,27 +26,23 @@
         Fecha
       </th>
       <th>
-       Valor
+        Valor
       </th>
       <th>
-       electrovalvulaId 
-     </th>
-
-     </tr>
-        
-        <tr appHighlight *ngFor="let medicion of this.mediciones">
-          <td>
-            {{medicion.fecha}}
-          </td>
-          <td>
-            {{medicion.valor}}
-          </td>
-          <td>
-            {{medicion.electrovalvulaId}}
-          </td>
-        </tr>
-   
-   
+        ElectrovalvulaId 
+      </th>
+    </tr>
+    <tr appHighlight medicion={{medicion.valor}} *ngFor="let medicion of this.mediciones">
+      <td >
+        {{medicion.fecha}}
+      </td>
+      <td >
+        {{medicion.valor}}
+      </td>
+      <td >
+        {{medicion.electrovalvulaId}}
+      </td>
+    </tr>
   </table>
  </div>
 </ion-content>

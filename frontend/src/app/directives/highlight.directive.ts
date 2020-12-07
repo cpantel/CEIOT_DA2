@@ -1,15 +1,22 @@
-import { Directive, ElementRef, HostListener  } from '@angular/core';
+import { Directive, ElementRef, HostListener, Input  } from '@angular/core';
 
 @Directive({
   selector: '[appHighlight]'
 })
 export class HighlightDirective {
+  highlightColor: string;
   constructor( private el: ElementRef){
     this.el.nativeElement.style.backgroundColor = null;
   }
 
   @HostListener('mouseenter') onMouseEnter() {
-    this.highlight('yellow');
+    var color = "red";
+    if (parseInt(this.medicion) <= 10 ) {
+      color = "green"
+    } else if (parseInt(this.medicion) <=30) {
+      color = "yellow"
+    }
+    this.highlight(color);
   }
   
   @HostListener('mouseleave') onMouseLeave() {
@@ -20,4 +27,5 @@ export class HighlightDirective {
     this.el.nativeElement.style.backgroundColor = color;
   }  
 
+  @Input() medicion: string;
 }

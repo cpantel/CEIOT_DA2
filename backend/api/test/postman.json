@@ -184,13 +184,51 @@
 			"response": []
 		},
 		{
-			"name": "Registrar medicion",
+			"name": "Get estado electrovalvula",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "4f2d59cf-72bd-4c70-acdc-b6b18f9a343c",
+						"exec": [
+							"pm.test(\"One result\", function () {",
+							"    var jsonData = pm.response.json();",
+							"    pm.expect(jsonData.length).to.gt(0);",
+							"});",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/api/dispositivo/2/electrovalvula",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"dispositivo",
+						"2",
+						"electrovalvula"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Abrir electrovalvula",
 			"request": {
 				"method": "POST",
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n \"fecha\":\"2020-11-30\",\n \"valor\":\"44\",\n \"dispositivoId\":3\n\n}",
+					"raw": "{\n \"apertura\":true\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -198,7 +236,7 @@
 					}
 				},
 				"url": {
-					"raw": "http://localhost:8080/api/medicion/",
+					"raw": "http://localhost:8080/api/dispositivo/3/electrovalvula",
 					"protocol": "http",
 					"host": [
 						"localhost"
@@ -206,20 +244,30 @@
 					"port": "8080",
 					"path": [
 						"api",
-						"medicion",
-						""
+						"dispositivo",
+						"3",
+						"electrovalvula"
 					]
 				}
 			},
 			"response": []
 		},
 		{
-			"name": "Get todos los riegos",
+			"name": "Cerrar electrovalvula",
 			"request": {
-				"method": "GET",
+				"method": "POST",
 				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n \"apertura\":false\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
 				"url": {
-					"raw": "http://localhost:8080/api/medicion/3/riego",
+					"raw": "http://localhost:8080/api/dispositivo/3/electrovalvula",
 					"protocol": "http",
 					"host": [
 						"localhost"
@@ -227,9 +275,40 @@
 					"port": "8080",
 					"path": [
 						"api",
-						"medicion",
+						"dispositivo",
 						"3",
-						"riego"
+						"electrovalvula"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Agregar medicion",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n \"valor\":62\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/api/dispositivo/1/medicion",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"dispositivo",
+						"1",
+						"medicion"
 					]
 				}
 			},

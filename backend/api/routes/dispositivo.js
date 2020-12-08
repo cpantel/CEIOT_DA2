@@ -108,12 +108,12 @@ routerDispositivo.get('/:idDispositivo/riego', function(req, res) {
         res.send(result);
     });
 });
-/*
+
 //Espera recibir por parámetro un id de dispositivo y un valor de medición y lo inserta en base de datos.
-routerDispositivo.post('/idDispositivo/medicion', function(req, res) {
+routerDispositivo.post('/:idDispositivo/medicion', function(req, res) {
     pool.query(`Insert into Mediciones (fecha,valor,dispositivoId) 
                values (now(),?,?)`, 
-               [req.body.valor, req.body.dispositivoId], function(err, result, fields) {
+               [req.body.valor, req.params.idDispositivo], function(err, result, fields) {
         if (err) {
             res.send(err).status(400);
             return;
@@ -121,7 +121,7 @@ routerDispositivo.post('/idDispositivo/medicion', function(req, res) {
         res.send(result);
     });
 });
-*/
+
 //Espera recibir por parámetro un id de electrovalvula, una fecha y un valor de estado y lo inserta en base de datos.
 routerDispositivo.post('/:idDispositivo/electrovalvula', function(req, res) {
     pool.query(`Insert into Log_Riegos (fecha,apertura,electrovalvulaId) 

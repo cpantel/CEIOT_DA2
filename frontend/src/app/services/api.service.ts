@@ -11,7 +11,7 @@ import { HttpClient } from '@angular/common/http';
 })
 
 export class ApiService {
-  private url="http://backend:8080/api/dispositivo/";
+  private url="http://127.0.0.1:8080/api/dispositivo/";
 
   constructor(private _http:HttpClient) {
 

@@ -11,31 +11,30 @@ import { HttpClient } from '@angular/common/http';
 })
 
 export class ApiService {
+  private url="http://backend:8080/api/dispositivo/";
 
   constructor(private _http:HttpClient) {
 
   }
 
   getDispositivos():Promise<Array<Dispositivo>> {
-   return this._http.get("http://localhost:8080/api/dispositivo/").toPromise().then(
+   return this._http.get(this.url).toPromise().then(
      (dispositivos:Array<Dispositivo>) => { 
         return  dispositivos
       }
-
    )
  }
 
  getDispositivo(id):Promise<Dispositivo> {
-    return this._http.get("http://localhost:8080/api/dispositivo/" + id).toPromise().then(
+    return this._http.get(this.url + id).toPromise().then(
       (dispositivo:Dispositivo) => { 
         return  dispositivo[0];
       }
     )
   }
 
-
   getUltimaMedicion(id):Promise<Medicion> {
-    return this._http.get("http://localhost:8080/api/dispositivo/" + id + "/medicion/ultima").toPromise().then(
+    return this._http.get(this.url + id + "/medicion/ultima").toPromise().then(
       (medicion:Medicion) => { 
         return  medicion[0];
       }
@@ -43,7 +42,7 @@ export class ApiService {
   }
 
   getMediciones(id):Promise<Array<Medicion>> {
-   return this._http.get("http://localhost:8080/api/dispositivo/" + id + "/medicion" ).toPromise().then(
+   return this._http.get(this.url + id + "/medicion" ).toPromise().then(
      (mediciones:Array<Medicion>) => { 
        return  mediciones;
      }
@@ -51,7 +50,7 @@ export class ApiService {
   }
 
   getRiegos(id):Promise<Array<Riego>> {
-    return this._http.get("http://localhost:8080/api/dispositivo/" + id + "/riego").toPromise().then(
+    return this._http.get(this.url + id + "/riego").toPromise().then(
       (riegos:Array<Riego>) => { 
         return  riegos;
       }
@@ -59,7 +58,7 @@ export class ApiService {
    }
 
    getElectrovalvula(id):Promise<Electrovalvula> {
-    return this._http.get("http://localhost:8080/api/dispositivo/" + id + "/electrovalvula").toPromise().then(
+    return this._http.get(this.url + id + "/electrovalvula").toPromise().then(
       (electrovalvula:Electrovalvula) => { 
         return  electrovalvula;
       }
@@ -68,7 +67,7 @@ export class ApiService {
 
    changeElectrovalvula(id:number,e:boolean):Promise<boolean> {
     console.log("changeElectrovalvula");
-    return this._http.post("http://localhost:8080/api/dispositivo/" + id + "/electrovalvula",{apertura:e}).toPromise().then(
+    return this._http.post(this.url + id + "/electrovalvula",{apertura:e}).toPromise().then(
       (electrovalvula:Electrovalvula) => { 
         console.log(electrovalvula);
         return  electrovalvula.apertura;

@@ -1,7 +1,7 @@
 var mysql = require('mysql');
 var configMysql = {
     connectionLimit: 10,
-    host: 'localhost',      /* dam_db_1  */
+    host: 'db',
     port: 3306,
     user: 'root',
     password: 'sdfjku3348',

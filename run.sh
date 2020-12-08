@@ -1,15 +1,11 @@
-# preparar db
-cd .....
-docker build
+cd backend/api 
+docker build -t cpantel/backend .
+cd ..
+cd ..
 
-# preparar backend
-
-cd....
-docker build
-
-# preparar frontend
-
-cd ...
+cd frontend
+docker build -t cpantel/frontend .
+cd ..
 
 # levantar todo
 docker-compose up 

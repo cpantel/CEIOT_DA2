@@ -3,6 +3,7 @@ version: '3.1'
 services:
   db:
     image: mysql
+    container_name: db
     command: --default-authentication-plugin=mysql_native_password
     restart: always
     environment:
@@ -10,4 +11,20 @@ services:
     ports:
       - "3306:3306"
     volumes:
+      - ./db/data:/var/lib/mysql
       - ./backend/dbsetup.sql:/docker-entrypoint-initdb.d/dbsetup.sql
+  frontend:
+    image: cpantel/frontend
+    container_name: frontend
+    ports:
+      - "4200:4200"
+    depends_on:
+      - backend
+
+  backend:
+    image: cpantel/backend
+    container_name: backend
+    ports:
+      - "8080:8080"
+    depends_on:
+      - db 

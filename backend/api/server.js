@@ -7,7 +7,7 @@ var routerDispositivo = require('./routes/dispositivo');
 
 app.use(express.json());
 
-var whitelist = ['http://localhost:4200'];
+var whitelist = ['http://localhost:4200','http://frontend:4200'];
 
 var corsOptions = {
   origin: function (origin, callback) {

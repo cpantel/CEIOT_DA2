@@ -8,4 +8,5 @@ docker build -t cpantel/frontend .
 cd ..
 
 # levantar todo
-docker-compose up 
+#docker-compose  --file=docker-compose.backend.yml up
+docker-compose up
